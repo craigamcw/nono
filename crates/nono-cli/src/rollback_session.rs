@@ -38,9 +38,10 @@ pub fn rollback_root() -> Result<PathBuf> {
 /// falls back to the default `~/.nono/rollbacks/`.
 pub fn rollback_root_with_override(override_path: Option<&PathBuf>) -> Result<PathBuf> {
     if let Some(path) = override_path {
-        return Ok(path.clone());
+        Ok(path.clone())
+    } else {
+        rollback_root()
     }
-    rollback_root()
 }
 
 /// Discover all rollback sessions in `~/.nono/rollbacks/`.
